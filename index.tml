@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modern Dark Interface</title>
+    
+    <!-- Иконки Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            min-height: 100vh;
+            background: linear-gradient(-45deg, #0f0f0f, #2a2a2a, #1a1a1a, #3d3d3d);
+            background-size: 400% 400%;
+            animation: gradient 15s ease infinite;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #fff;
+        }
+
+        @keyframes gradient {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .container {
+            background: rgba(15, 15, 15, 0.9);
+            padding: 2rem;
+            border-radius: 20px;
+            box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
+            width: 400px;
+            backdrop-filter: blur(10px);
+        }
+
+        .logo {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .logo svg {
+            width: 60px;
+            height: 60px;
+            fill: url(#gradient);
+        }
+
+        .logo-text {
+            font-size: 2rem;
+            background: linear-gradient(45deg, #00ff88, #00b4d8);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-weight: 700;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        input {
+            width: 100%;
+            padding: 12px 20px;
+            border: none;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            color: #fff;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        input:focus {
+            outline: none;
+            background: rgba(255, 255, 255, 0.15);
+            box-shadow: 0 0 10px rgba(0, 255, 136, 0.3);
+        }
+
+        button {
+            width: 100%;
+            padding: 12px;
+            background: linear-gradient(45deg, #00ff88, #00b4d8);
+            border: none;
+            border-radius: 8px;
+            color: #000;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 255, 136, 0.3);
+        }
+
+        .switch-form {
+            text-align: center;
+            margin-top: 1rem;
+        }
+
+        .switch-form a {
+            color: #00ff88;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .welcome-message {
+            text-align: center;
+            font-size: 1.5rem;
+            margin-top: 2rem;
+            display: none;
+        }
+
+        .chat-button {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: linear-gradient(45deg, #00ff88, #00b4d8);
+            padding: 15px 25px;
+            border-radius: 30px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+            color: #000;
+            font-weight: 600;
+            box-shadow: 0 5px 15px rgba(0, 255, 136, 0.3);
+        }
+
+        .gradient-text {
+            background: linear-gradient(45deg, #00ff88, #00b4d8);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="logo">
+            <svg viewBox="0 0 24 24">
+                <defs>
+                    <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                        <stop offset="0%" style="stop-color:#00ff88;stop-opacity:1" />
+                        <stop offset="100%" style="stop-color:#00b4d8;stop-opacity:1" />
+                    </linearGradient>
+                </defs>
+                <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+            </svg>
+            <div class="logo-text">KillerApp</div>
+        </div>
+
+        <form id="registerForm">
+            <div class="form-group">
+                <input type="text" placeholder="Username" required>
+            </div>
+            <div class="form-group">
+                <input type="password" placeholder="Password" required>
+            </div>
+            <div class="form-group">
+                <input type="password" placeholder="Confirm Password" required>
+            </div>
+            <button type="submit">Register <i class="fas fa-user-plus"></i></button>
+        </form>
+
+        <form id="loginForm" style="display: none;">
+            <div class="form-group">
+                <input type="text" placeholder="Username" required>
+            </div>
+            <div class="form-group">
+                <input type="password" placeholder="Password" required>
+            </div>
+            <button type="submit">Login <i class="fas fa-sign-in-alt"></i></button>
+        </form>
+
+        <div class="switch-form">
+            <a id="switchButton">Already have an account? Login here</a>
+        </div>
+
+        <div class="welcome-message">
+            Welcome, <span class="gradient-text" id="username"></span>! 👋
+        </div>
+    </div>
+
+    <a href="https://t.me/killrunchat" class="chat-button" target="_blank">
+        <i class="fab fa-telegram-plane"></i>
+        Our Chat
+    </a>
+
+    <script>
+        const registerForm = document.getElementById('registerForm');
+        const loginForm = document.getElementById('loginForm');
+        const switchButton = document.getElementById('switchButton');
+        const welcomeMessage = document.querySelector('.welcome-message');
+        
+        switchButton.addEventListener('click', () => {
+            registerForm.style.display = registerForm.style.display === 'none' ? 'block' : 'none';
+            loginForm.style.display = loginForm.style.display === 'none' ? 'block' : 'none';
+            switchButton.textContent = registerForm.style.display === 'none' ? 
+                "Don't have an account? Register here" : 
+                "Already have an account? Login here";
+        });
+
+        registerForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const password = registerForm.querySelector('input[type="password"]:nth-of-type(1)').value;
+            const confirmPassword = registerForm.querySelector('input[type="password"]:nth-of-type(2)').value;
+            
+            if (password !== confirmPassword) {
+                alert('Passwords do not match!');
+                return;
+            }
+            
+            welcomeMessage.style.display = 'block';
+            document.querySelector('.container').style.display = 'none';
+            document.getElementById('username').textContent = registerForm.querySelector('input[type="text"]').value;
+        });
+
+        loginForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            welcomeMessage.style.display = 'block';
+            document.querySelector('.container').style.display = 'none';
+            document.getElementById('username').textContent = loginForm.querySelector('input[type="text"]').value;
+        });
+    </script>
+</body>
+  </html>
